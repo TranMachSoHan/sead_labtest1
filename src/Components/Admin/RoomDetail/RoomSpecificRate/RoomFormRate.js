@@ -15,7 +15,7 @@ const RoomFormRate = (props) => {
                 <Formik
                     initialValues={{
                         startDate: isCreated ? new Date(): props.formData.startDate,
-                        endDate : isCreated ? new Date():  props.formData.endDate,
+                        endDate : isCreated ? new Date() + 1:  props.formData.endDate,
                         rating: isCreated ? '': props.formData.rating
                     }}
                     enableReinitialize
