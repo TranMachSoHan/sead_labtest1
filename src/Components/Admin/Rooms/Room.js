@@ -59,7 +59,11 @@ const Room = (props) => {
         <div>
             <div className="d-flex justify-content-between">
                 <div><h1>Rooms</h1></div>
-                <div><button onClick={addRoom} type="button" className="btn btn-primary">ADD ROOM</button></div>
+                <div>
+                    <button onClick={addRoom} type="button" className="btn btn-primary">ADD ROOM</button>
+                    <button type="button" className="btn btn-info" onClick={() => navigate(`/admin/homepage/`)}>Return </button>
+                </div>
+                
             </div>
 
             {loading && <div>Loading</div>}
@@ -67,7 +71,6 @@ const Room = (props) => {
                 <RoomTable onDeleteRoom={deleteRoom} onEditRoom={editRoom} roomList={rooms}></RoomTable>
             )}
             
-            <button onClick={() => navigate(`/admin/homepage/`)}>Return</button>
         </div>
     )
 }

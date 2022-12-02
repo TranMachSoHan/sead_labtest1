@@ -12,7 +12,7 @@ const HotelRoomCRUD = () =>{
         <div>
             <div className="d-flex justify-content-between">
                 <h3>{roomID === "-1" ? "Add Room" : "Edit Room"}</h3>
-                <button type="button" className="btn btn-primary" onClick={() => navigate(`/admin/rooms/`)}>Return </button>
+                <button type="button" className="btn btn-info" onClick={() => navigate(`/admin/rooms/`)}>Return </button>
             </div>
             <RoomOverviewForm roomID={Number(roomID)}></RoomOverviewForm>
             <RoomRate roomID={Number(roomID)}></RoomRate>
