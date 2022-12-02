@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Visitor.css"
-import { Container,Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import HotelImages from "../../Components/Visitor/HotelImages/HotelImages";
 import HotelOverview from "../../Components/Visitor/HotelOverview/HotelOverview";
+import MyNavbar from "../../Components/Util/MyNavbar";
+import HotelRooms from "../../Components/Visitor/HotelRooms/HotelRooms";
+import HotelRuleView from "../../Components/Visitor/HotelRule/HotelRuleView";
 
 const Visitor = () => {
     const [hotel, setHotel] = useState([]);
@@ -28,11 +31,14 @@ const Visitor = () => {
 
     return (
       <Container>
+        <MyNavbar role={"Visitor"}></MyNavbar>
         {loading && <div>Loading</div>}
         {!loading && (
           <div className="visitor">
               <HotelImages hotelPhotos={hotel.photos}></HotelImages>
               <HotelOverview overview={hotel.overview}></HotelOverview>
+              <HotelRooms roomList = {hotel.roomType}></HotelRooms>
+              <HotelRuleView rules={hotel.houseRules}></HotelRuleView>
           </div>
         )}
       </Container>
