@@ -27,11 +27,11 @@ const Visitor = () => {
     return (
       <Container>
         {loading && <div>Loading</div>}
-        {!loading && (
+        {/* {!loading && (
           <Row>
               <HotelImages hotelPhotos={hotel.photos}></HotelImages>
           </Row>
-        )}
+        )} */}
       </Container>
     )
 }
