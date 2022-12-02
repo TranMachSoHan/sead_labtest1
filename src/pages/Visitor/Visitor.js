@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Visitor.css"
 import { Container,Row } from "react-bootstrap";
 import HotelImages from "../../Components/Visitor/HotelImages/HotelImages";
+import HotelOverview from "../../Components/Visitor/HotelOverview/HotelOverview";
 
 const Visitor = () => {
     const [hotel, setHotel] = useState([]);
@@ -28,9 +30,10 @@ const Visitor = () => {
       <Container>
         {loading && <div>Loading</div>}
         {!loading && (
-          <Row>
+          <div className="visitor">
               <HotelImages hotelPhotos={hotel.photos}></HotelImages>
-          </Row>
+              <HotelOverview overview={hotel.overview}></HotelOverview>
+          </div>
         )}
       </Container>
     )
