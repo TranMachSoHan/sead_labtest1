@@ -9,9 +9,9 @@ import RoomFormRate from "./RoomFormRate";
 
 const RoomRate = (props) => {
     const [loading, setLoading] = useState(true);
-    const [hotel,setHotel] = useState({});
+    const [room,setRoom] = useState({});
     const [roomRates, setRoomRates] = useState([]);
-    const {roomID} = props.roomID;
+    const roomID = props.roomID;
     const [roomRateFormData, setRoomRateFormData] = useState({});
     const [roomRateAction, setRoomRateAction] = useState(false);
 
@@ -19,10 +19,11 @@ const RoomRate = (props) => {
         const fetchData = async () => {
 
         try {
-            axios.get(`https://api.npoint.io/57c91b6f051e9f983cd7`).then(
+            axios.get(`https://api.npoint.io/57c91b6f051e9f983cd7/roomType/${roomID}`).then(
                 response => {
-                    setHotel(response.data);
+                    setRoom(response.data);
                     setLoading(false);
+                    getLocalStorage(response.data);
                 }
             )
         } catch (error) {
@@ -34,6 +35,12 @@ const RoomRate = (props) => {
 
     }, []);
       
+    const getLocalStorage = (value) => {
+        if(localStorage.getItem(value.uuid) !== null){
+            setRoomRates(JSON.parse(localStorage.getItem(value.uuid)));
+        }
+    }
+
     const createRate = () => {
       setRoomRateFormData({ 
         "typeForm":"Create"
@@ -42,21 +49,41 @@ const RoomRate = (props) => {
     }
 
     const handleRate = (value) =>{
-      console.log(`Edit rate ${value}`);
+      setRoomRateFormData({ 
+        "startDate": new Date(value.range.startDate),
+        "endDate": new Date(value.range.endDate),
+        "rating": value.range.rating,
+        "index": value.index,
+        "typeForm":"Edit"
+      });
+      setRoomRateAction(true);
     }
 
     const deleteRate = (value)=>{
-      
+        roomRates.splice(value.index, 1);
+        const jsonObj = JSON.stringify(roomRates);
+        localStorage.setItem(room.uuid, jsonObj);
+        cancelForm();
     }
 
     const submitForm =(formData)=>{
-      if(formData.typeForm === "Create"){
-        
-      }
-      else{
-        // edit 
+        const dataStore = {
+            "startDate": formData.startDate,
+            "endDate": formData.endDate,
+            "rating": formData.rating
+        }
+        if(formData.typeForm === "Create"){
+            roomRates.push(dataStore)
+            const jsonObj = JSON.stringify(roomRates);
+            localStorage.setItem(room.uuid, jsonObj);
+            // window.location.reload(false);
+            setRoomRates(roomRates)
+        }
+        else{
+            // edit 
+
+        }
         cancelForm();
-      }
     }
 
     const cancelForm = () =>{
@@ -74,7 +101,7 @@ const RoomRate = (props) => {
                 </Card.Header>
                 <Card.Body>
                   <Container>
-                    <button type="button" className="btn btn-primary" onClick={createRate}>Add Specific Rate</button>
+                    <button type="button" className="btn btn-danger" onClick={createRate}>Add Specific Rate</button>
                     <Row>
                         {roomRates.length > 0 && (
                           <Col>

@@ -28,6 +28,7 @@ const HotelRule = (props) => {
       }
 
       setLoading(true);
+      cancelForm();
       axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
           response => {
               setLoading(false);

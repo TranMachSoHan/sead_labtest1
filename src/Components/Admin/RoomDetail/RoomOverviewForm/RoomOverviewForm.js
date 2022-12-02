@@ -10,7 +10,7 @@ const RoomOverviewForm = (props) => {
     const [loading, setLoading] = useState(true);
     const [hotel,setHotel] = useState({});
 
-    const [roomID, setRoomID] = useState(props.roomID);
+    const roomID = props.roomID;
     const navigate = useNavigate();
 
     useEffect(() => {
