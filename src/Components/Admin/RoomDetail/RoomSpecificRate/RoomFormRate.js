@@ -6,6 +6,8 @@ import {Card} from "react-bootstrap";
 
 const RoomFormRate = (props) => {
     const isCreated = props.formData.typeForm === "Create";
+    const date = new Date();
+    date.setDate(date.getDate()+1);
 
     return (
         
@@ -15,7 +17,7 @@ const RoomFormRate = (props) => {
                 <Formik
                     initialValues={{
                         startDate: isCreated ? new Date(): props.formData.startDate,
-                        endDate : isCreated ? new Date() + 1:  props.formData.endDate,
+                        endDate : isCreated ? date:  props.formData.endDate,
                         rating: isCreated ? '': props.formData.rating
                     }}
                     enableReinitialize

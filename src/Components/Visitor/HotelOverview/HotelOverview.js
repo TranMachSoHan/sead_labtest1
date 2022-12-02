@@ -8,13 +8,12 @@ import HotelOwner from "./HotelOwner/HotelOwner";
 const HotelOverview = (props)=> {
     return(
         <Container>
-            <Row xs={1} lg={2}>
+            <Row >
                 <Col className="hotelOverview">
                     <HotelDetailHeader detail={props.overview}></HotelDetailHeader>
                     <HotelOwner hotelOwner={props.overview.hotelOwner}></HotelOwner>
                     <HotelUtility utilities={props.overview.utilities}></HotelUtility>
                 </Col>
-
             </Row>
         </Container>
     )

@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {Table, Button} from "react-bootstrap";
 import {FaBed, FaHouseUser} from 'react-icons/fa'
 
 
 const RoomTable =(props)=> {
+    
     return (
         <Table striped bordered hover>
             <thead>
                     <tr>
                         <th>Room Name</th>
-                        <th>Rate</th>
+                        <th>Normal Rate</th>
                         <th>Room Detail</th>
                         <th></th>
                     </tr>
@@ -45,8 +46,8 @@ const RoomTable =(props)=> {
                                         
                                     </div>
                                 </td>
-                                <td >
-                                    <Button>Order Now</Button>
+                                <td>
+                                    <button onClick={() => props.onOrder(room)}>Order Now</button>
                                 </td>
                             </tr>
                         )) 

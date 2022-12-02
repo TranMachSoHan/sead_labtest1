@@ -76,12 +76,14 @@ const RoomRate = (props) => {
             roomRates.push(dataStore)
             const jsonObj = JSON.stringify(roomRates);
             localStorage.setItem(room.uuid, jsonObj);
-            // window.location.reload(false);
             setRoomRates(roomRates)
         }
         else{
             // edit 
-
+            roomRates[formData.index] = dataStore
+            const jsonObj = JSON.stringify(roomRates);
+            localStorage.setItem(room.uuid, jsonObj);
+            setRoomRates(roomRates)
         }
         cancelForm();
     }
